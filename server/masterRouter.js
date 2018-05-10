@@ -1,8 +1,10 @@
+// IMPORT CONTROLLER ROUTES
 const userRoutes = require(`${__dirname}/controllers/user/userRoutes`);
 const matchRoutes = require(`${__dirname}/controllers/match/matchRoutes`);
 const bracketRoutes = require(`${__dirname}/controllers/bracket/bracketRoutes`);
 const authRoutes = require(`${__dirname}/controllers/auth/authRoutes`);
 
+// EXPORT ALL ROUTES
 module.exports = function(app) {
   authRoutes(app);
   userRoutes(app);
