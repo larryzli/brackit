@@ -1,5 +1,5 @@
 #nav-wrapper {
-  color: #fff;
+  color: #FAFAFA;
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -11,18 +11,20 @@
     transform: translate3d(-100vw, 0, 0); }
 
 #nav-container {
-  background: #333;
-  color: #fff;
+  background: #424242;
+  color: #FAFAFA;
   height: 100vh;
-  width: 275px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   text-align: center;
-  z-index: 3; }
+  z-index: 3;
+  box-shadow: 0px 0px 10px #212121; }
 
 #main-logo {
   font-size: 18px;
-  background: purple;
+  background: #212121;
+  color: #7986cb;
   min-height: 60px;
   display: flex;
   justify-content: center;
@@ -39,12 +41,21 @@
     flex-direction: column;
     text-align: left; }
     #nav-links nav:first-child .nav-link {
-      background: #333;
-      padding: 15px; }
+      padding: 15px;
+      color: #BDBDBD;
+      border-left: 8px solid transparent;
+      font-size: 16px;
+      font-weight: 300; }
+      #nav-links nav:first-child .nav-link:hover {
+        color: #FAFAFA; }
+    #nav-links nav:first-child .active-nav-link {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 8px solid #7986cb; }
   #nav-links nav:last-child {
-    display: flex; }
-
-a, a:visited {
-  color: #fff; }
+    display: flex;
+    background: #212121;
+    padding: 15px;
+    justify-content: space-between; }
 
 /*# sourceMappingURL=SideNav.css.map */

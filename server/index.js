@@ -90,6 +90,13 @@ app.get(
     failureRedirect: REACT_APP_LOGIN
   })
 );
+app.get("/api/me", (req, res) => {
+  if (req.user) {
+    return res.status(200).json(req.user);
+  } else {
+    return res.status(403).send("Login Please");
+  }
+});
 
 // API ROUTES
 masterRouter(app);
