@@ -1,0 +1,50 @@
+#nav-wrapper {
+  color: #fff;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  transition: all 0.5s;
+  z-index: 2; }
+  #nav-wrapper.open {
+    transform: translate3d(0vw, 0, 0); }
+  #nav-wrapper.close {
+    transform: translate3d(-100vw, 0, 0); }
+
+#nav-container {
+  background: #333;
+  color: #fff;
+  height: 100vh;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 3; }
+
+#main-logo {
+  font-size: 18px;
+  background: purple;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#nav-links {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white; }
+  #nav-links nav:first-child {
+    display: flex;
+    flex-direction: column;
+    text-align: left; }
+    #nav-links nav:first-child .nav-link {
+      background: #333;
+      padding: 15px; }
+  #nav-links nav:last-child {
+    display: flex; }
+
+a, a:visited {
+  color: #fff; }
+
+/*# sourceMappingURL=SideNav.css.map */

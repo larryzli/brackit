@@ -2,9 +2,6 @@
 require("dotenv").config();
 // ENV VARIABLES
 const {
-  AUTH_DOMAIN,
-  CLIENT_ID,
-  CLIENT_SECRET,
   PORT,
   CONNECTION_STRING,
   SESSION_SECRET,
@@ -15,11 +12,12 @@ const express = require("express");
 // MIDDLEWARE DEPENDENCIES
 const { json } = require("body-parser");
 const cors = require("cors");
+const session = require("express-session");
 // DATABASE DEPENDENCIES
 const massive = require("massive");
 // AUTHENTICATION DEPENDENCIES
 const passport = require("passport");
-const Auth0Strategy = require("passport-auth0");
+const strategy = require(`${__dirname}/controllers/auth/authController`);
 // IMPORT API ROUTES
 const masterRouter = require(`${__dirname}/masterRouter`);
 
@@ -34,12 +32,73 @@ massive(CONNECTION_STRING)
   })
   .catch(console.log);
 
+// SERVE FRONT END IN PRODUCTION
+// app.use(express.static(`${__dirname}/../build`));
+
 // USE MIDDLEWARES
 app.use(json());
 app.use(cors());
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24
+    }
+  })
+);
+
+// SETUP PASSPORT STRATEGY
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(strategy);
+passport.serializeUser((user, done) => {
+  app
+    .get("db")
+    .get_user_by_authid([user.id])
+    .then(response => {
+      if (!response[0]) {
+        app
+          .get("db")
+          .create_user_by_authid([
+            user.id,
+            user._json.name,
+            user._json.nickname,
+            user._json.email,
+            user._json.picture
+          ])
+          .then(created => {
+            return done(null, created[0]);
+          })
+          .catch(console.log);
+      } else {
+        return done(null, response[0]);
+      }
+    })
+    .catch(console.log);
+});
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+// AUTH API
+app.get(
+  "/auth",
+  passport.authenticate("auth0", {
+    successRedirect: "http://localhost:3000/discover",
+    failureRedirect: REACT_APP_LOGIN
+  })
+);
 
 // API ROUTES
 masterRouter(app);
+
+// ROUTES IN PRODUCTION
+// const path = require("path");
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../build/index.html"));
+// });
 
 // APP LISTEN
 const port = PORT || 3001;
