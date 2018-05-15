@@ -1,6 +1,6 @@
 // IMPORT DEPENDENCIES
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 // IMPORT COMPONENTS
 import SideNav from "./components/SideNav/SideNav";
 // IMPORT ROUTES
@@ -11,14 +11,12 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
-          <SideNav />
-          <div className="content">{routes}</div>
-        </div>
-      </Router>
+      <div className="App">
+        {this.props.location.pathname !== "/" ? <SideNav /> : null}
+        <div className="content">{routes}</div>
+      </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

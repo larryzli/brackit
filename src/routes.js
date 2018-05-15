@@ -2,6 +2,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 // IMPORT COMPONENTS
+import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Discover from "./components/Discover/Discover";
 import Manage from "./components/Manage/Manage";
@@ -13,7 +14,7 @@ import Settings from "./components/Settings/Settings.js";
 // EXPORT ROUTES
 export default (
   <Switch>
-    <Route exact path="/" component={Discover} />
+    <Route exact path="/" component={Home} />
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/discover" component={Discover} />
     <Route path="/manage" component={Manage} />
