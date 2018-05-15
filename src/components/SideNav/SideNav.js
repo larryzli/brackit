@@ -30,29 +30,31 @@ class SideNav extends Component {
           </Link>
           <div id="nav-links">
             <nav>
-              <NavLink
-                className="nav-link"
-                activeClassName="active-nav-link"
-                to="/dashboard"
-                onClick={() => this.props.closeMenu()}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="nav-icon"
+              {this.props.user.user_id ? (
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active-nav-link"
+                  to="/dashboard"
+                  onClick={() => this.props.closeMenu()}
                 >
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-                Dashboard
-              </NavLink>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="nav-icon"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                  Dashboard
+                </NavLink>
+              ) : null}
               <NavLink
                 className="nav-link"
                 activeClassName="active-nav-link"
@@ -76,29 +78,31 @@ class SideNav extends Component {
                 </svg>
                 Discover
               </NavLink>
-              <NavLink
-                className="nav-link"
-                activeClassName="active-nav-link"
-                to="/manage"
-                onClick={() => this.props.closeMenu()}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="nav-icon"
+              {this.props.user.user_id ? (
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active-nav-link"
+                  to="/manage"
+                  onClick={() => this.props.closeMenu()}
                 >
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-                </svg>
-                Manage
-              </NavLink>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="nav-icon"
+                  >
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                  </svg>
+                  Manage
+                </NavLink>
+              ) : null}
               <NavLink
                 className="nav-link"
                 activeClassName="active-nav-link"
@@ -149,18 +153,24 @@ class SideNav extends Component {
                   <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
                   <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
                 </svg>
-                Donate
+                Support Me
               </NavLink>
             </nav>
-            {this.props.user.alias ? (
+            {this.props.user.user_id ? (
               <nav>
-                <Link to="/profile" id="user">
+                <Link
+                  to="/profile"
+                  id="user"
+                  onClick={() => this.props.closeMenu()}
+                >
                   <img
                     src={this.props.user.profile_image_url}
                     alt="user"
                     className="user-image"
                   />
-                  <div id="user-name">{this.props.user.alias}</div>
+                  <div id="user-name">
+                    {this.props.user.alias || this.props.user.user_id}
+                  </div>
                 </Link>
                 <div className="user-links">
                   <Link to="/settings">
@@ -182,7 +192,7 @@ class SideNav extends Component {
                       <line x1="21" y1="12" x2="9" y2="12" />
                     </svg>
                   </Link>
-                  <Link to="/profile">
+                  <Link to="/settings">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

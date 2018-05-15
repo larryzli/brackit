@@ -18,7 +18,7 @@ class Header extends Component {
           viewBox="0 0 24 24"
           fill="none"
           stroke="#FAFAFA"
-          strokeWidth="2"
+          strokeWidth="1"
           strokeLinecap="round"
           strokeLinejoin="round"
           className="menu-icon"
