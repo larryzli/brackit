@@ -1,6 +1,7 @@
 // IMPORT DEPENDENCIES
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 // IMPORT REDUX FUNCTIONS
 import { toggleMenu } from "../../reducers/menuReducer";
 // IMPORT STYLING
@@ -28,6 +29,25 @@ class Header extends Component {
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
+        <div className="header-title">
+          <div className="breadcrumb">
+            {this.props.breadcrumbs && this.props.breadcrumbs.length ? (
+              <Link
+                to={
+                  this.props.breadcrumbs[this.props.breadcrumbs.length - 1].link
+                }
+              >
+                {
+                  this.props.breadcrumbs[this.props.breadcrumbs.length - 1]
+                    .title
+                }
+              </Link>
+            ) : (
+              "No Title"
+            )}
+          </div>
+          <div className="breadcrumbs" />
+        </div>
       </div>
     );
   }

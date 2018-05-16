@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.location.pathname !== "/" ? <SideNav /> : null}
-        <div className="content">{routes}</div>
+        {routes}
       </div>
     );
   }

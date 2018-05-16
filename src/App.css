@@ -4,7 +4,9 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  outline: none; }
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.5px; }
 
 html {
   background: #616161; }
@@ -16,5 +18,16 @@ html {
 
 a, a:visited {
   color: #FAFAFA; }
+
+.content {
+  padding: 15px; }
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .title-wrapper h2 {
+    font-weight: 600;
+    letter-spacing: 1.2px; }
 
 /*# sourceMappingURL=App.css.map */

@@ -11,7 +11,7 @@
     transform: translate3d(-100vw, 0, 0); }
 
 #nav-container {
-  background: #424242;
+  background: #606CA2;
   color: #FAFAFA;
   height: 100vh;
   width: 265px;
@@ -44,7 +44,7 @@
     height: fit-content; }
     #nav-links nav:first-child .nav-link {
       padding: 15px;
-      color: #BDBDBD;
+      color: #FAFAFA;
       border-left: 8px solid transparent;
       font-size: 16px;
       font-weight: 300;
@@ -58,7 +58,7 @@
     #nav-links nav:first-child .active-nav-link {
       color: white;
       background: rgba(255, 255, 255, 0.1);
-      border-left: 8px solid #7986cb; }
+      border-left: 8px solid #FAFAFA; }
   #nav-links nav:last-child {
     display: flex;
     background: #212121;

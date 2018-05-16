@@ -1,7 +1,11 @@
 #header-container {
+  background: #424242;
   height: 60px;
   padding: 15px;
   display: flex;
   align-items: center; }
+
+.header-title {
+  margin-left: 15px; }
 
 /*# sourceMappingURL=Header.css.map */

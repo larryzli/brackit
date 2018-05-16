@@ -9,9 +9,16 @@ import "./Manage.css";
 class Manage extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <div>MANAGE</div>
+      <div className="content-wrapper">
+        <Header breadcrumbs={[{ link: "/manage", title: "Manage" }]} />
+        <div className="content">
+          <div className="title-wrapper">
+            <h2>Created Brackets</h2>
+            <div className="title-actions">
+              <button>Create</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
