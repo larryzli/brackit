@@ -1,7 +1,5 @@
-const {
-  // METHODS
-} = require(`${__dirname}/userController`);
+const { updateUser } = require(`${__dirname}/userController`);
 
 module.exports = function(app) {
-  // app.get('/api/route', METHOD)
+  app.put("/api/me/:id", updateUser);
 };

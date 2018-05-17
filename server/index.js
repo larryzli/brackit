@@ -17,7 +17,7 @@ const session = require("express-session");
 const massive = require("massive");
 // AUTHENTICATION DEPENDENCIES
 const passport = require("passport");
-const strategy = require(`${__dirname}/controllers/auth/authController`);
+const strategy = require(`${__dirname}/controllers/auth/strategy`);
 // IMPORT API ROUTES
 const masterRouter = require(`${__dirname}/masterRouter`);
 
@@ -90,13 +90,6 @@ app.get(
     failureRedirect: REACT_APP_LOGIN
   })
 );
-app.get("/api/me", (req, res) => {
-  if (req.user) {
-    return res.status(200).json(req.user);
-  } else {
-    return res.status(403).send("Login Please");
-  }
-});
 
 // API ROUTES
 masterRouter(app);

@@ -43,9 +43,15 @@
     height: 32px;
     width: 32px;
     padding: 5px;
-    border-radius: 5px; }
+    border-radius: 5px;
+    transition: all 0.2s;
+    cursor: pointer; }
     #nav-user-info .user-icon:hover {
       background: rgba(255, 255, 255, 0.1); }
+  #nav-user-info #logout:hover {
+    color: #FF8E8E; }
+  #nav-user-info #login:hover {
+    color: #A5FFD6; }
 
 #nav-links {
   display: flex;
@@ -60,7 +66,8 @@
     padding: 10px;
     align-items: center;
     border-left: 7px solid transparent;
-    opacity: 0.6; }
+    opacity: 0.6;
+    transition: all 0.2s; }
     #nav-links .nav-link:hover {
       opacity: 1; }
   #nav-links .active-nav-link {
@@ -69,7 +76,7 @@
     font-weight: 600;
     background: rgba(255, 255, 255, 0.1); }
   #nav-links .nav-icon {
-    margin-left: 35px;
+    margin-left: 40px;
     margin-right: 25px; }
 
 /*# sourceMappingURL=SideNav.css.map */
