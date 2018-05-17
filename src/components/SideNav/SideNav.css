@@ -11,7 +11,7 @@
     transform: translate3d(-100vw, 0, 0); }
 
 #nav-container {
-  background: #606CA2;
+  background: #35AAB5;
   color: #FAFAFA;
   height: 100vh;
   width: 265px;
@@ -20,82 +20,56 @@
   z-index: 3;
   box-shadow: 0px 0px 10px #212121; }
 
-#main-logo {
-  font-size: 18px;
-  background: #212121;
-  color: #7986cb;
-  min-height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center; }
-
-#nav-links {
-  height: 100%;
+#nav-user-info {
+  min-height: 210px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  color: white; }
-  #nav-links nav:first-child {
+  justify-content: center;
+  align-items: center; }
+  #nav-user-info img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 7px solid rgba(255, 255, 255, 0.2);
+    object-fit: cover; }
+  #nav-user-info p {
+    margin-top: 10px; }
+  #nav-user-info #user-links {
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    overflow: scroll;
-    height: fit-content; }
-    #nav-links nav:first-child .nav-link {
-      padding: 15px;
-      color: #FAFAFA;
-      border-left: 8px solid transparent;
-      font-size: 16px;
-      font-weight: 300;
-      display: flex;
-      align-items: center;
-      min-height: 50px; }
-      #nav-links nav:first-child .nav-link:hover {
-        color: #FAFAFA; }
-      #nav-links nav:first-child .nav-link .nav-icon {
-        margin-right: 15px; }
-    #nav-links nav:first-child .active-nav-link {
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
-      border-left: 8px solid #FAFAFA; }
-  #nav-links nav:last-child {
+    margin-top: 15px;
+    width: 120px;
+    justify-content: center; }
+  #nav-user-info .user-icon {
+    height: 32px;
+    width: 32px;
+    padding: 5px;
+    border-radius: 5px; }
+    #nav-user-info .user-icon:hover {
+      background: rgba(255, 255, 255, 0.1); }
+
+#nav-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  align-items: center; }
+  #nav-links .nav-link {
+    width: 100%;
+    min-height: 45px;
     display: flex;
-    background: #212121;
-    min-height: 60px;
-    padding: 0 20px;
-    justify-content: space-between;
-    align-items: center; }
-    #nav-links nav:last-child #user {
-      display: flex;
-      align-items: center; }
-      #nav-links nav:last-child #user #user-name {
-        text-overflow: ellipsis;
-        width: 68%;
-        overflow: hidden; }
-      #nav-links nav:last-child #user .user-image {
-        width: 30px;
-        min-width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        margin-right: 10px;
-        object-fit: cover; }
-    #nav-links nav:last-child .user-links {
-      display: flex;
-      width: 30%;
-      justify-content: space-between;
-      flex-direction: row-reverse;
-      align-items: center;
-      margin-right: -5px; }
-      #nav-links nav:last-child .user-links .user-icon {
-        padding: 5px;
-        width: 34px;
-        height: 34px;
-        margin-left: 5px;
-        color: #BDBDBD; }
-        #nav-links nav:last-child .user-links .user-icon:hover {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 5px;
-          color: #FAFAFA; }
+    padding: 10px;
+    align-items: center;
+    border-left: 7px solid transparent;
+    opacity: 0.6; }
+    #nav-links .nav-link:hover {
+      opacity: 1; }
+  #nav-links .active-nav-link {
+    border-left: 7px solid #FAFAFA;
+    opacity: 1;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1); }
+  #nav-links .nav-icon {
+    margin-left: 35px;
+    margin-right: 25px; }
 
 /*# sourceMappingURL=SideNav.css.map */
