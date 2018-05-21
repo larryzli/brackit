@@ -1,1 +1,1 @@
-SELECT * FROM users WHERE auth_id = $1;
+SELECT user_id, name, alias, email, profile_image_url, bio FROM users WHERE auth_id = $1;

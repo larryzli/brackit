@@ -21,10 +21,10 @@ export function getUser() {
   };
 }
 
-export function updateUser(id, alias, name, profile_image_url) {
+export function updateUser(id, alias, name, profile_image_url, bio) {
   return {
     type: UPDATE_USER,
-    payload: axios.put(`/api/me/${id}`, { alias, name, profile_image_url })
+    payload: axios.put(`/api/me/${id}`, { alias, name, profile_image_url, bio })
   };
 }
 

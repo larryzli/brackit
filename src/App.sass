@@ -9,6 +9,7 @@
   outline: none
   font-family: $roboto
   letter-spacing: 0.5px
+  border: none
 
 html
   background: $white
@@ -22,16 +23,118 @@ a, a:visited
   color: $white
 
 .content
-  
+  // margin-top: 60px
+  padding: 25px
 
 //    PAGE TITLE     //
 .title-wrapper
   display: flex
   justify-content: space-between
   align-items: center
+  margin-bottom: 15px
+  height: 37px
 
   h2
     font-weight: 600
     letter-spacing: $spacing
 
+//     INPUTS      //
+.input-group
+  margin-bottom: 12px
+  
+  p:first-child
+    text-transform: uppercase
+    font-size: 12px
+    font-weight: 600
+    opacity: 0.4
+    margin-bottom: 3px
+    margin-left: 1px
+
+  p:not(:first-child)
+    font-size: 18px
+    margin-left: 1px
+    padding-top: 4px
+    padding-bottom: 10px
+
+  input, textarea
+    padding: 8px
+    width: 100%
+    background: $light-grey1
+    outline: none
+    border: 2px solid transparent
+
+    &:focus
+      border: 2px solid $teal
+
+  textarea
+    resize: none
+    height: 100px
+
 //     BUTTONS     //
+.btn-group
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 25px
+  
+.title-actions
+  display: flex
+
+.btn
+  padding: 10px 20px
+  background: transparent
+  border: 1px solid $dark-grey2
+  border-radius: 5px
+  display: flex
+  justify-content: center
+  align-items: center
+  cursor: pointer
+
+  &:hover
+    background: $dark-grey2
+    color: $white
+
+.btn:not(:first-child)
+  margin-left: 15px
+
+.icon-btn
+  padding: 7px 9px
+  background: transparent
+  border-radius: 5px
+  display: flex
+  justify-content: center
+  align-items: center
+  cursor: pointer
+
+  &:hover
+    background: rgba(0, 0, 0, 0.1)
+
+.positive
+  color: $green
+
+  &:hover
+    background: $green
+    color: $white
+
+.negative
+  color: $red
+
+  &:hover
+    background: $red
+    color: $white
+
+.tiny
+  width: 50px
+
+.small
+  width: 100px
+
+.medium
+  width: 200px
+
+.large
+  width: 300px
+
+.full-width
+  width: 100%

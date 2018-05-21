@@ -1,0 +1,1 @@
+SELECT user_id, name, alias, email, profile_image_url, bio FROM users WHERE user_id = $1;
