@@ -18,13 +18,14 @@ class Header extends Component {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#FAFAFA"
+          stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
           className="menu-icon"
           onClick={this.props.toggleMenu}
         >
+          <title>Menu</title>
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="18" x2="21" y2="18" />

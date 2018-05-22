@@ -45,7 +45,7 @@ class SideNav extends Component {
             <p id="user-name">{this.props.user.alias || "Guest"}</p>
             {this.props.user.user_id ? (
               <div id="user-links">
-                <Link to="/profile">
+                <Link to={`/profile/${this.props.user.user_id}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

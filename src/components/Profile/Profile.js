@@ -1,13 +1,15 @@
 // IMPORT DEPENDENCIES
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 // IMPORT COMPONENTS
 import Header from "../Header/Header";
 // IMPORT REDUX FUNCTIONS
-import { getUser, updateUser } from "../../reducers/userReducer";
+import { updateUser } from "../../reducers/userReducer";
 // IMPORT ASSETS
 import defaultPic from "../../assets/img/deafult_user.svg";
 import invalidPic from "../../assets/img/invalid_img.svg";
+import loadingIcon from "../../assets/loading/loading-spin.svg";
 // IMPORT STYLING
 import "./Profile.css";
 
@@ -29,12 +31,24 @@ class Profile extends Component {
     };
   }
   componentDidMount() {
-    this.props.getUser().then(response => {
+    this.getUserData();
+  }
+  componentDidUpdate(newProps) {
+    if (newProps.match.params.id !== this.props.match.params.id) {
+      this.getUserData();
+    }
+  }
+  getUserData() {
+    if (!this.state.loading) {
+      this.setState({ loading: true });
+    }
+    axios.get(`/api/user/${this.props.match.params.id}`).then(response => {
+      console.log(response);
       this.setState({
-        alias: this.props.user.alias || "",
-        name: this.props.user.name || "",
-        image: this.props.user.profile_image_url || "",
-        bio: this.props.user.bio || "",
+        alias: response.data.alias || "",
+        name: response.data.name || "",
+        image: response.data.profile_image_url || "",
+        bio: response.data.bio || "No bio",
         loading: false
       });
     });
@@ -44,7 +58,7 @@ class Profile extends Component {
       alias: this.props.user.alias || "",
       name: this.props.user.name || "",
       image: this.props.user.profile_image_url || "",
-      bio: this.props.user.bio || "",
+      bio: this.props.user.bio || "No bio",
       editing: false
     });
   }
@@ -84,15 +98,13 @@ class Profile extends Component {
       <div className="content-wrapper">
         <Header breadcrumbs={[{ link: "/profile", title: "Profile" }]} />
         {this.state.loading ? (
-          !this.props.user.user_id ? (
-            <div>Please Log In</div>
-          ) : (
-            <div>Loading profile...</div>
-          )
+          <div className="loading-container">
+            <img src={loadingIcon} alt="Loading..." />
+          </div>
         ) : (
           <div className="content">
             <div className="title-wrapper">
-              <h2>My Profile</h2>
+              <h2>User Profile</h2>
               {this.state.editing ? (
                 <div className="title-actions">
                   <button
@@ -110,6 +122,7 @@ class Profile extends Component {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
+                      <title>Discard Changes</title>
                       <line x1="18" y1="6" x2="6" y2="18" />
                       <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
@@ -129,13 +142,14 @@ class Profile extends Component {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
+                      <title>Save Changes</title>
                       <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
                       <polyline points="17 21 17 13 7 13 7 21" />
                       <polyline points="7 3 7 8 15 8" />
                     </svg>
                   </button>
                 </div>
-              ) : (
+              ) : this.props.user.user_id === +this.props.match.params.id ? (
                 <div className="title-actions">
                   <button
                     className="icon-btn"
@@ -152,12 +166,13 @@ class Profile extends Component {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
+                      <title>Edit Profile</title>
                       <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" />
                       <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
                     </svg>
                   </button>
                 </div>
-              )}
+              ) : null}
             </div>
             <div>
               <div className="input-group">
@@ -170,7 +185,7 @@ class Profile extends Component {
                     onChange={e => this.handleChange("alias", e.target.value)}
                   />
                 ) : (
-                  <p>{this.props.user.alias}</p>
+                  <p>{this.state.alias}</p>
                 )}
               </div>
               <div className="input-group">
@@ -183,18 +198,14 @@ class Profile extends Component {
                     onChange={e => this.handleChange("name", e.target.value)}
                   />
                 ) : (
-                  <p>{this.props.user.name}</p>
+                  <p>{this.state.name}</p>
                 )}
               </div>
               <div className="input-group">
                 <p>Image</p>
                 <img
                   className="profile-image"
-                  src={
-                    this.state.editing
-                      ? this.state.image || defaultPic
-                      : this.props.user.profile_image_url || defaultPic
-                  }
+                  src={this.state.image || defaultPic}
                   style={
                     this.state.editing
                       ? null
@@ -225,7 +236,7 @@ class Profile extends Component {
                   />
                 ) : (
                   <p style={{ whiteSpace: "pre", fontSize: "14px" }}>
-                    {this.props.user.bio}
+                    {this.state.bio}
                   </p>
                 )}
               </div>
@@ -245,4 +256,4 @@ const mapStateToProps = state => {
 };
 
 // EXPORT COMPONENT
-export default connect(mapStateToProps, { getUser, updateUser })(Profile);
+export default connect(mapStateToProps, { updateUser })(Profile);

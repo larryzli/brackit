@@ -20,7 +20,7 @@ html
   width: 100vw
   
 a, a:visited
-  color: $white
+  color: $black
 
 .content
   // margin-top: 60px
@@ -66,6 +66,9 @@ a, a:visited
     &:focus
       border: 2px solid $teal
 
+    &::placeholder
+      opacity: 0.5
+
   textarea
     resize: none
     height: 100px
@@ -106,9 +109,14 @@ a, a:visited
   justify-content: center
   align-items: center
   cursor: pointer
+  border: 1px solid rgba(0,0,0,0.05)
 
   &:hover
     background: rgba(0, 0, 0, 0.1)
+    border: 1px solid transparent
+
+  &:not(:last-child)
+    margin-right: 5px
 
 .positive
   color: $green
@@ -138,3 +146,10 @@ a, a:visited
 
 .full-width
   width: 100%
+
+//     LOADING     //
+.loading-container
+  display: flex
+  margin-top: 60px
+  justify-content: center
+  align-items: center

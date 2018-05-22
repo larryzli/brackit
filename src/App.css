@@ -18,7 +18,7 @@ html {
   width: 100vw; }
 
 a, a:visited {
-  color: #FAFAFA; }
+  color: #212121; }
 
 .content {
   padding: 25px; }
@@ -55,6 +55,8 @@ a, a:visited {
     border: 2px solid transparent; }
     .input-group input:focus, .input-group textarea:focus {
       border: 2px solid #35AAB5; }
+    .input-group input::placeholder, .input-group textarea::placeholder {
+      opacity: 0.5; }
   .input-group textarea {
     resize: none;
     height: 100px; }
@@ -92,9 +94,13 @@ a, a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; }
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05); }
   .icon-btn:hover {
-    background: rgba(0, 0, 0, 0.1); }
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid transparent; }
+  .icon-btn:not(:last-child) {
+    margin-right: 5px; }
 
 .positive {
   color: #4AE09C; }
@@ -122,5 +128,11 @@ a, a:visited {
 
 .full-width {
   width: 100%; }
+
+.loading-container {
+  display: flex;
+  margin-top: 60px;
+  justify-content: center;
+  align-items: center; }
 
 /*# sourceMappingURL=App.css.map */

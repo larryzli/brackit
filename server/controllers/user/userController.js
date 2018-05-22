@@ -1,6 +1,5 @@
 module.exports = {
   getUser: (req, res) => {
-    console.log(req.user);
     if (req.user) {
       req.app
         .get("db")
@@ -12,6 +11,15 @@ module.exports = {
     } else {
       return res.status(403).send("Login Please");
     }
+  },
+  findUser: (req, res) => {
+    req.app
+      .get("db")
+      .get_user_by_userid([req.params.id])
+      .then(response => {
+        return res.status(200).json(response[0]);
+      })
+      .catch(console.log);
   },
   updateUser: (req, res) => {
     const { id } = req.params;
