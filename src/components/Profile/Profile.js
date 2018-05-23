@@ -174,71 +174,75 @@ class Profile extends Component {
                 </div>
               ) : null}
             </div>
-            <div>
-              <div className="input-group">
-                <p>Alias</p>
-                {this.state.editing ? (
-                  <input
-                    placeholder="Enter an alias"
-                    value={this.state.alias}
-                    type="text"
-                    onChange={e => this.handleChange("alias", e.target.value)}
-                  />
-                ) : (
-                  <p>{this.state.alias}</p>
-                )}
+            <div className="profile-inputs">
+              <div className="responsive-input-2col">
+                <div className="input-group">
+                  <p>Alias</p>
+                  {this.state.editing ? (
+                    <input
+                      placeholder="Enter an alias"
+                      value={this.state.alias}
+                      type="text"
+                      onChange={e => this.handleChange("alias", e.target.value)}
+                    />
+                  ) : (
+                    <p>{this.state.alias}</p>
+                  )}
+                </div>
+                <div className="input-group">
+                  <p>Name</p>
+                  {this.state.editing ? (
+                    <input
+                      placeholder="Enter your name"
+                      value={this.state.name}
+                      type="text"
+                      onChange={e => this.handleChange("name", e.target.value)}
+                    />
+                  ) : (
+                    <p>{this.state.name}</p>
+                  )}
+                </div>
               </div>
-              <div className="input-group">
-                <p>Name</p>
-                {this.state.editing ? (
-                  <input
-                    placeholder="Enter your name"
-                    value={this.state.name}
-                    type="text"
-                    onChange={e => this.handleChange("name", e.target.value)}
+              <div className="responsive-input-2col">
+                <div className="input-group">
+                  <p>Bio</p>
+                  {this.state.editing ? (
+                    <textarea
+                      value={this.state.bio}
+                      placeholder="Write a short bio"
+                      type="text"
+                      onChange={e => this.handleChange("bio", e.target.value)}
+                    />
+                  ) : (
+                    <p style={{ whiteSpace: "pre", fontSize: "14px" }}>
+                      {this.state.bio}
+                    </p>
+                  )}
+                </div>
+                <div className="input-group">
+                  <p>Image</p>
+                  <img
+                    className="profile-image"
+                    src={this.state.image || defaultPic}
+                    style={
+                      this.state.editing
+                        ? null
+                        : { width: "110px", height: "110px" }
+                    }
+                    onError={e => {
+                      e.target.src = invalidPic;
+                    }}
+                    alt="profile"
                   />
-                ) : (
-                  <p>{this.state.name}</p>
-                )}
-              </div>
-              <div className="input-group">
-                <p>Image</p>
-                <img
-                  className="profile-image"
-                  src={this.state.image || defaultPic}
-                  style={
-                    this.state.editing
-                      ? null
-                      : { width: "110px", height: "110px" }
-                  }
-                  onError={e => {
-                    e.target.src = invalidPic;
-                  }}
-                  alt="profile"
-                />
-                {this.state.editing ? (
-                  <input
-                    value={this.state.image}
-                    placeholder="Image URL"
-                    type="text"
-                    onChange={e => this.handleChange("image", e.target.value)}
-                  />
-                ) : null}
-              </div>
-              <div className="input-group">
-                <p>Bio</p>
-                {this.state.editing ? (
-                  <textarea
-                    value={this.state.bio}
-                    placeholder="Write a short bio"
-                    type="text"
-                    onChange={e => this.handleChange("bio", e.target.value)}
-                  />
-                ) : (
-                  <p style={{ whiteSpace: "pre", fontSize: "14px" }}>
-                    {this.state.bio}
-                  </p>
-                )}
+                  {this.state.editing ? (
+                    <input
+                      value={this.state.image}
+                      placeholder="Image URL"
+                      type="text"
+                      onChange={e => this.handleChange("image", e.target.value)}
+                    />
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>

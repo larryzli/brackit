@@ -59,7 +59,7 @@ a, a:visited {
       opacity: 0.5; }
   .input-group textarea {
     resize: none;
-    height: 100px; }
+    height: 112px; }
 
 .btn-group {
   width: 100%;
@@ -95,7 +95,8 @@ a, a:visited {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.05); }
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s; }
   .icon-btn:hover {
     background: rgba(0, 0, 0, 0.1);
     border: 1px solid transparent; }
