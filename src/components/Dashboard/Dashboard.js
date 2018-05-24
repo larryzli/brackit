@@ -9,9 +9,9 @@ import "./Dashboard.css";
 class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <div className="content-wrapper">
         <Header />
-        <div>DASHBOARD</div>
+        <div className="content">DASHBOARD</div>
       </div>
     );
   }

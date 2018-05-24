@@ -9,9 +9,9 @@ import "./Discover.css";
 class Discover extends Component {
   render() {
     return (
-      <div>
+      <div className="content-wrapper">
         <Header />
-        <div>DISCOVER</div>
+        <div className="content">DISCOVER</div>
       </div>
     );
   }

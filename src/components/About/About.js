@@ -9,9 +9,9 @@ import "./About.css";
 class About extends Component {
   render() {
     return (
-      <div>
+      <div className="content-wrapper">
         <Header />
-        <div>ABOUT</div>
+        <div className="content">ABOUT</div>
       </div>
     );
   }

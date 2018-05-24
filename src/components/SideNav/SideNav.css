@@ -19,7 +19,7 @@
   flex-direction: column;
   z-index: 6;
   box-shadow: 0px 0px 10px #212121;
-  overflow-y: scroll; }
+  overflow-y: auto; }
   #nav-container a, #nav-container a:visited {
     color: #FAFAFA; }
 
@@ -45,6 +45,12 @@
     cursor: pointer; }
     #nav-user-info .user-icon:hover {
       background: rgba(255, 255, 255, 0.1); }
+  #nav-user-info .icon-nav-link {
+    border-bottom: 2px solid transparent; }
+    #nav-user-info .icon-nav-link:not(:first-child) {
+      margin-left: 5px; }
+  #nav-user-info .icon-nav-link-active {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); }
   #nav-user-info #logout:hover {
     color: #FF8E8E; }
   #nav-user-info #login:hover {

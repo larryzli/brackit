@@ -9,9 +9,9 @@ import "./Donate.css";
 class Donate extends Component {
   render() {
     return (
-      <div>
+      <div className="content-wrapper">
         <Header />
-        <div>DONATE</div>
+        <div className="content">DONATE</div>
       </div>
     );
   }

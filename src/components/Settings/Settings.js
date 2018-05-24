@@ -9,9 +9,9 @@ import "./Settings.css";
 class Settings extends Component {
   render() {
     return (
-      <div>
+      <div className="content-wrapper">
         <Header />
-        <div>SETTINGS</div>
+        <div className="content">SETTINGS</div>
       </div>
     );
   }
