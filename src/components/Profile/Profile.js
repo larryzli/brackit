@@ -96,7 +96,11 @@ class Profile extends Component {
     // console.log(this.props);
     return (
       <div className="content-wrapper">
-        <Header breadcrumbs={[{ link: "/profile", title: "Profile" }]} />
+        <Header
+          breadcrumbs={[
+            { link: `/profile/${this.props.match.params.id}`, title: "Profile" }
+          ]}
+        />
         {this.state.loading ? (
           <div className="loading-container">
             <img src={loadingIcon} alt="Loading..." />
@@ -180,6 +184,7 @@ class Profile extends Component {
                   <p>Alias</p>
                   {this.state.editing ? (
                     <input
+                      autoFocus
                       placeholder="Enter an alias"
                       value={this.state.alias}
                       type="text"
@@ -203,47 +208,47 @@ class Profile extends Component {
                   )}
                 </div>
               </div>
-              <div className="responsive-input-2col">
-                <div className="input-group">
-                  <p>Bio</p>
-                  {this.state.editing ? (
-                    <textarea
-                      value={this.state.bio}
-                      placeholder="Write a short bio"
-                      type="text"
-                      onChange={e => this.handleChange("bio", e.target.value)}
-                    />
-                  ) : (
-                    <p style={{ whiteSpace: "pre", fontSize: "14px" }}>
-                      {this.state.bio}
-                    </p>
-                  )}
-                </div>
-                <div className="input-group">
-                  <p>Image</p>
-                  <img
-                    className="profile-image"
-                    src={this.state.image || defaultPic}
-                    style={
-                      this.state.editing
-                        ? null
-                        : { width: "110px", height: "110px" }
-                    }
-                    onError={e => {
-                      e.target.src = invalidPic;
-                    }}
-                    alt="profile"
+              {/* <div className="responsive-input-2col"> */}
+              <div className="input-group">
+                <p>Image</p>
+                <img
+                  className="profile-image"
+                  src={this.state.image || defaultPic}
+                  style={
+                    this.state.editing
+                      ? null
+                      : { width: "110px", height: "110px" }
+                  }
+                  onError={e => {
+                    e.target.src = invalidPic;
+                  }}
+                  alt="profile"
+                />
+                {this.state.editing ? (
+                  <input
+                    value={this.state.image}
+                    placeholder="Image URL"
+                    type="text"
+                    onChange={e => this.handleChange("image", e.target.value)}
                   />
-                  {this.state.editing ? (
-                    <input
-                      value={this.state.image}
-                      placeholder="Image URL"
-                      type="text"
-                      onChange={e => this.handleChange("image", e.target.value)}
-                    />
-                  ) : null}
-                </div>
+                ) : null}
               </div>
+              <div className="input-group">
+                <p>Bio</p>
+                {this.state.editing ? (
+                  <textarea
+                    value={this.state.bio}
+                    placeholder="Write a short bio"
+                    type="text"
+                    onChange={e => this.handleChange("bio", e.target.value)}
+                  />
+                ) : (
+                  <p style={{ whiteSpace: "pre", fontSize: "14px" }}>
+                    {this.state.bio}
+                  </p>
+                )}
+              </div>
+              {/* </div> */}
             </div>
           </div>
         )}

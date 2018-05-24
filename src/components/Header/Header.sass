@@ -1,6 +1,7 @@
 @import "../../util.sass"
 
 #header-container
+  background: $white
   color: $black
   border-bottom: 1px solid rgba(0, 0, 0, 0.1)
   // height: 60px
@@ -10,7 +11,22 @@
   position: sticky
   top: 0
   width: 100%
+  z-index: 4
 
-  
+.menu-icon
+  margin-right: 15px
 .header-title
-  margin-left: 15px
+  font-size: 18px
+
+@media (min-width: 400px)
+  #header-container
+    padding: 15px 40px
+
+@media (min-width: 768px)
+  #header-container
+    padding: 20px 50px
+    // border-bottom: 1px solid transparent
+    // display: none
+
+  .menu-icon
+    display: none

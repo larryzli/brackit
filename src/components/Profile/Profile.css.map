@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEE,sCAAsB;EACpB,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,oCAAoC;EAC3D,eAAe,EAAE,IAAI",
+"mappings": "AAAA,eAAe;EACb,SAAS,EAAE,KAAK",
 "sources": ["Profile.sass"],
 "names": [],
 "file": "Profile.css"

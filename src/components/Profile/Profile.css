@@ -1,6 +1,4 @@
-.profile-inputs .responsive-input-2col {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  grid-column-gap: 25px; }
+.profile-inputs {
+  max-width: 800px; }
 
 /*# sourceMappingURL=Profile.css.map */

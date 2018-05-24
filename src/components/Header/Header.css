@@ -1,4 +1,5 @@
 #header-container {
+  background: #FAFAFA;
   color: #212121;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px 25px;
@@ -6,9 +7,23 @@
   align-items: center;
   position: sticky;
   top: 0;
-  width: 100%; }
+  width: 100%;
+  z-index: 4; }
+
+.menu-icon {
+  margin-right: 15px; }
 
 .header-title {
-  margin-left: 15px; }
+  font-size: 18px; }
+
+@media (min-width: 400px) {
+  #header-container {
+    padding: 15px 40px; } }
+@media (min-width: 768px) {
+  #header-container {
+    padding: 20px 50px; }
+
+  .menu-icon {
+    display: none; } }
 
 /*# sourceMappingURL=Header.css.map */
