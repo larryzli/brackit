@@ -41,6 +41,9 @@ a, a:visited
     font-weight: 600
     letter-spacing: $spacing
 
+  &:not(:first-of-type)
+    margin-top: 25px
+
 //     INPUTS      //
 .input-group
   margin-bottom: 12px
@@ -68,6 +71,7 @@ a, a:visited
     border: 2px solid transparent
     border-radius: 0
     height: 34px
+    transition: border 0.2s
 
     &:focus
       border: 2px solid $teal
@@ -98,19 +102,21 @@ a, a:visited
 .btn
   padding: 10px 20px
   background: transparent
-  border: 1px solid $dark-grey2
+  border: 1px solid rgba(0, 0, 0, 0.05)
   border-radius: 5px
   display: flex
   justify-content: center
   align-items: center
   cursor: pointer
+  transition: all 0.2s
+  font-size: 14px
 
   &:hover
     background: $dark-grey2
     color: $white
 
-.btn:not(:first-child)
-  margin-left: 15px
+  &:not(:last-of-type)
+    margin-right: 5px
 
 .icon-btn
   padding: 7px 9px
@@ -124,10 +130,12 @@ a, a:visited
   transition: all 0.2s
 
   &:hover
-    background: rgba(0, 0, 0, 0.1)
+    // background: rgba(0, 0, 0, 0.1)
+    background: $dark-grey2
+    color: $white
     border: 1px solid transparent
 
-  &:not(:last-child)
+  &:not(:last-of-type)
     margin-right: 5px
 
 .positive

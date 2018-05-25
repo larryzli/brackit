@@ -1,0 +1,63 @@
+@import "../../util.sass"
+
+.bracket-card-container
+  // height: 325px
+  width: 260px
+  background: $white
+  box-shadow: $shadow1
+  border-radius: 5px
+
+.bracket-card-image
+  height: 150px
+  // width: 100%
+  background: $light-grey1
+  border-radius: 5px 5px 0 0
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+.bracket-card-title
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 15px
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+.bracket-card-name
+  font-size: 16px
+  font-weight: 600
+  max-width: 240px
+  word-wrap: normal
+  overflow: hidden
+  text-align: center
+
+.bracket-card-subject
+  margin-top: 5px
+  font-size: 12px
+  opacity: 0.6
+
+.bracket-card-author
+  font-size: 12px
+  margin-top: 15px
+  color: $light-grey2
+
+  span
+    color: $teal
+  
+.bracket-card-details
+  padding: 15px
+
+.bracket-card-times
+  display: flex
+  width: 100%
+  justify-content: space-between
+
+.bracket-card-times-entry
+  display: flex
+  font-size: 12px
+
+  .entry-label
+    text-transform: uppercase
+    margin-right: 20px
+    opacity: 0.4

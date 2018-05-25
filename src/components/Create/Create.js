@@ -1,8 +1,12 @@
 // IMPORT DEPENDENCIES
 import React, { Component } from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import moment from "moment";
 // IMPORT COMPONENTS
 import Header from "../Header/Header";
+import BracketCard from "../BracketCard/BracketCard";
 // IMPORT STYLING
 import "react-day-picker/lib/style.css";
 import "./Create.css";
@@ -15,13 +19,28 @@ class Create extends Component {
     // COMPONENT STATE
     this.state = {
       name: "",
-      startDate: new Date(),
-      startTime: "00:00",
-      subject: ""
+      start: moment(),
+      subject: "",
+      description: "",
+      headerImage: ""
     };
   }
   handleChange(prop, val) {
     this.setState({ [prop]: val });
+  }
+  setTime(val) {
+    const time = val.split(":");
+    const tempDate = this.state.start;
+    tempDate.set({
+      hours: time[0],
+      minutes: time[1]
+    });
+    this.setState({
+      start: tempDate
+    });
+  }
+  cancelCreate() {
+    this.props.history.push("/manage");
   }
   render() {
     console.log(this.state);
@@ -61,18 +80,50 @@ class Create extends Component {
             </div>
           </div>
           <div className="create-inputs">
-            <div className="input-group">
-              <p>Bracket Name</p>
-              <input
-                placeholder="What do you want to call your bracket?"
-                value={this.state.name}
-                type="text"
-                onChange={e => this.handleChange("name", e.target.value)}
-              />
+            <div className="responsive-input-2col">
+              <div className="input-group">
+                <p>Name *</p>
+                <input
+                  autoFocus
+                  placeholder="What do you want to call your bracket?"
+                  value={this.state.name}
+                  type="text"
+                  onChange={e => this.handleChange("name", e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <p>Subject *</p>
+                <input
+                  placeholder="What are you competing in?"
+                  value={this.state.subject}
+                  type="text"
+                  onChange={e => this.handleChange("subject", e.target.value)}
+                  list="subjects"
+                />
+                <datalist
+                  id="subjects"
+                  style={{ height: "100px", overflowY: "scroll" }}
+                >
+                  <option>Baseball</option>
+                  <option>Basketball</option>
+                  <option>Beer Pong</option>
+                  <option>Call of Duty</option>
+                  <option>CounterStrike:GO</option>
+                  <option>Fantasy Sports</option>
+                  <option>Football</option>
+                  <option>Hearthstone</option>
+                  <option>Heroes of the Storm</option>
+                  <option>Hockey</option>
+                  <option>League of Legends</option>
+                  <option>Overwatch</option>
+                  <option>Ping Pong</option>
+                  <option>Soccer</option>
+                </datalist>
+              </div>
             </div>
             <div className="responsive-input-2col">
               <div className="input-group">
-                <p>Start Date</p>
+                <p>Start Date *</p>
                 <style>{`
               .DayPickerInput{
                 width: 100%;
@@ -99,8 +150,8 @@ class Create extends Component {
               }
               `}</style>
                 <DayPickerInput
-                  value={this.state.startDate}
-                  onDayChange={day => this.handleChange("startDate", day)}
+                  value={new Date(this.state.start)}
+                  onDayChange={day => this.handleChange("start", moment(day))}
                   dayPickerProps={{
                     disabledDays: [
                       {
@@ -114,24 +165,52 @@ class Create extends Component {
                 />
               </div>
               <div className="input-group">
-                <p>Start Time</p>
+                <p>Start Time *</p>
                 <input
                   placeholder="HH:MM"
-                  value={this.state.startTime}
+                  value={this.state.start.local().format("HH:mm")}
                   type="time"
-                  onChange={e => this.handleChange("startTime", e.target.value)}
+                  onChange={e => this.setTime(e.target.value)}
                 />
               </div>
             </div>
             <div className="input-group">
-              <p>Subject</p>
-              <input
-                placeholder="What are you competing in?"
-                value={this.state.subject}
+              <p>Description</p>
+              <textarea
+                placeholder="How would you describe your bracket?"
+                value={this.state.description}
                 type="text"
-                onChange={e => this.handleChange("subject", e.target.value)}
+                onChange={e => this.handleChange("description", e.target.value)}
               />
             </div>
+            <div className="input-group">
+              <p>Header Image URL</p>
+              <input
+                placeholder="What image do you want for your bracket?"
+                value={this.state.headerImage}
+                type="text"
+                onChange={e => this.handleChange("headerImage", e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="title-wrapper">
+            <h2>Card Preview</h2>
+          </div>
+          <div className="card-preview">
+            <BracketCard
+              name={this.state.name}
+              start={this.state.start}
+              subject={this.state.subject}
+              description={this.state.description}
+              image={this.state.headerImage}
+              author={this.props.user.alias}
+            />
+          </div>
+          <div className="btn-group">
+            <button className="btn small" onClick={() => this.cancelCreate()}>
+              Cancel
+            </button>
+            <button className="btn positive small">Save</button>
           </div>
         </div>
       </div>
@@ -139,5 +218,11 @@ class Create extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    ...state.user
+  };
+};
+
 // EXPORT COMPONENT
-export default Create;
+export default connect(mapStateToProps)(Create);

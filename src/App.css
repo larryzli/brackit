@@ -36,6 +36,8 @@ a, a:visited {
   .title-wrapper h2 {
     font-weight: 600;
     letter-spacing: 1.2px; }
+  .title-wrapper:not(:first-of-type) {
+    margin-top: 25px; }
 
 .input-group {
   margin-bottom: 12px; }
@@ -59,7 +61,8 @@ a, a:visited {
     outline: none;
     border: 2px solid transparent;
     border-radius: 0;
-    height: 34px; }
+    height: 34px;
+    transition: border 0.2s; }
     .input-group input:focus, .input-group textarea:focus {
       border: 2px solid #35AAB5; }
     .input-group input::placeholder, .input-group textarea::placeholder {
@@ -86,18 +89,19 @@ a, a:visited {
 .btn {
   padding: 10px 20px;
   background: transparent;
-  border: 1px solid #424242;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px; }
   .btn:hover {
     background: #424242;
     color: #FAFAFA; }
-
-.btn:not(:first-child) {
-  margin-left: 15px; }
+  .btn:not(:last-of-type) {
+    margin-right: 5px; }
 
 .icon-btn {
   padding: 7px 9px;
@@ -110,9 +114,10 @@ a, a:visited {
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.2s; }
   .icon-btn:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: #424242;
+    color: #FAFAFA;
     border: 1px solid transparent; }
-  .icon-btn:not(:last-child) {
+  .icon-btn:not(:last-of-type) {
     margin-right: 5px; }
 
 .positive {

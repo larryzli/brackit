@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import "./SideNav.css";
 // IMPORT ASSETS
 import defaultPic from "../../assets/img/deafult_user.svg";
-import invalidPic from "../../assets/img/invalid_img.svg";
+// import invalidPic from "../../assets/img/invalid_img.svg";
 // REDUX FUNCTIONS
 import { closeMenu } from "../../reducers/menuReducer";
 import { getUser, logout } from "../../reducers/userReducer";
@@ -39,7 +39,7 @@ class SideNav extends Component {
               src={this.props.user.profile_image_url || defaultPic}
               alt="user"
               onError={e => {
-                e.target.src = invalidPic;
+                e.target.src = defaultPic;
               }}
             />
             <p id="user-name">{this.props.user.alias || "Guest"}</p>
