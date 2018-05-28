@@ -4,6 +4,7 @@ import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import axios from "axios";
 // IMPORT COMPONENTS
 import Header from "../Header/Header";
 import BracketCard from "../BracketCard/BracketCard";
@@ -23,6 +24,8 @@ class Create extends Component {
       subject: "",
       description: "",
       headerImage: ""
+      // private: false,
+      // format: "Single Elimination"
     };
   }
   handleChange(prop, val) {
@@ -42,6 +45,27 @@ class Create extends Component {
   cancelCreate() {
     this.props.history.push("/manage");
   }
+  createBracket() {
+    if (!this.props.user.user_id) {
+      alert("Please create an account or log in to create a bracket.");
+    } else if (!this.state.name || !this.state.subject || !this.state.start) {
+      alert("Please fill out all required(*) fields.");
+    } else {
+      axios
+        .post("/api/bracket/create", {
+          name: this.state.name,
+          start: this.state.start,
+          subject: this.state.subject,
+          description: this.state.description,
+          headerImage: this.state.headerImage,
+          creatorID: this.props.user.user_id
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(console.log);
+    }
+  }
   render() {
     console.log(this.state);
     return (
@@ -58,7 +82,7 @@ class Create extends Component {
             <div className="title-actions">
               <button
                 className="icon-btn positive"
-                // onClick={() => this.handleSave()}
+                onClick={() => this.createBracket()}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -204,13 +228,19 @@ class Create extends Component {
               description={this.state.description}
               image={this.state.headerImage}
               author={this.props.user.alias}
+              status="Draft"
             />
           </div>
           <div className="btn-group">
             <button className="btn small" onClick={() => this.cancelCreate()}>
               Cancel
             </button>
-            <button className="btn positive small">Save</button>
+            <button
+              className="btn positive small"
+              onClick={() => this.createBracket()}
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>

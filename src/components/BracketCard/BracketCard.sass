@@ -1,11 +1,24 @@
 @import "../../util.sass"
 
 .bracket-card-container
-  // height: 325px
+  height: 292px
   width: 260px
   background: $white
   box-shadow: $shadow1
   border-radius: 5px
+  overflow: hidden
+  display: grid
+  grid-template-columns: 1
+  grid-template-rows: 1
+
+  &:hover .bracket-card-overlay
+    transform: translateY(0%)
+
+.bracket-card-content
+  grid-column: 1 / -1
+  grid-row: 1 / -1
+  width: 100%
+  height: 100%
 
 .bracket-card-image
   height: 150px
@@ -15,6 +28,7 @@
   background-position: center
   background-size: cover
   background-repeat: no-repeat
+  padding: 10px
 
 .bracket-card-title
   display: flex
@@ -61,3 +75,74 @@
     text-transform: uppercase
     margin-right: 20px
     opacity: 0.4
+
+.bracket-card-overlay
+  background-color: rgba(0, 0, 0, 0.7)
+  grid-column: 1 / -1
+  grid-row: 1 / -1
+  position: relative
+  // display: grid
+  // justify-items: center
+  // align-items: center
+  transform: translateY(100%)
+  transition: 0.2s
+  padding: 15px
+
+.bracket-card-description
+  color: white
+  font-size: 12px
+  font-weight: 100
+  max-width: 230px
+  max-height: 211px
+  min-height: 211px
+  overflow-wrap: break-word
+  word-wrap: break-word
+  overflow-y: hidden
+  text-overflow: ellipsis
+  white-space: pre-wrap
+
+.bracket-card-controls
+  display: flex
+  margin-top: 15px
+
+.btn.card-btn
+  color: $white
+  // background: rgba(255, 255, 255, 0.)
+  background: rgba(0, 0, 0, 0.5)
+  border: 1px solid rgba(0, 0, 0, 0.2)
+  width: 50%
+
+  &:hover
+    border: 1px solid transparent
+    color: $black
+    background: $white
+
+.btn.card-btn.positive
+  color: $green
+  
+  &:hover
+    color: $white
+    background: $green
+
+.bracket-card-status
+  width: fit-content
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 5px 8px
+  font-size: 12px
+  border-radius: 5px
+  background: $dark-grey1
+  box-shadow: $shadow1
+
+  &.draft
+    color: yellow
+  
+  &.ready
+    color: $white
+
+  &.live
+    color: $green
+
+  &.done
+    color: $light-grey2
