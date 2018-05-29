@@ -2,7 +2,7 @@
 
 .bracket-card-container
   height: 292px
-  width: 260px
+  min-width: 260px
   background: $white
   box-shadow: $shadow1
   border-radius: 5px
@@ -92,7 +92,7 @@
   color: white
   font-size: 12px
   font-weight: 100
-  max-width: 230px
+  min-width: 230px
   max-height: 211px
   min-height: 211px
   overflow-wrap: break-word
@@ -110,7 +110,8 @@
   // background: rgba(255, 255, 255, 0.)
   background: rgba(0, 0, 0, 0.5)
   border: 1px solid rgba(0, 0, 0, 0.2)
-  width: 50%
+  width: 100px
+  flex-grow: 1
 
   &:hover
     border: 1px solid transparent
@@ -124,6 +125,13 @@
     color: $white
     background: $green
 
+.btn.card-btn.caution
+  color: $yellow
+  
+  &:hover
+    color: $black
+    background: $yellow
+
 .bracket-card-status
   width: fit-content
   display: flex
@@ -134,9 +142,10 @@
   border-radius: 5px
   background: $dark-grey1
   box-shadow: $shadow1
+  color: $yellow
 
   &.draft
-    color: yellow
+    color: $yellow
   
   &.ready
     color: $white

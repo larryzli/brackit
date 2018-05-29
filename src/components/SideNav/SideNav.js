@@ -13,13 +13,18 @@ import { getUser, logout } from "../../reducers/userReducer";
 
 // CLASS COMPONENT
 class SideNav extends Component {
+  // LOAD USER ONTO REDUX
   componentDidMount() {
     this.props.getUser();
   }
+
+  // ROUTE TO LOGIN
   login() {
     window.location = process.env.REACT_APP_LOGIN || "/auth";
     this.props.closeMenu();
   }
+
+  // LOGOUT CURRENT USER
   logout() {
     this.props.logout();
     this.props.closeMenu();

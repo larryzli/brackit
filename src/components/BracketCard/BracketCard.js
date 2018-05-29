@@ -18,8 +18,12 @@ const BracketCard = function(props) {
               : `url(${defaultPic})`
           }}
         >
-          <div className={`bracket-card-status ${props.status.toLowerCase()}`}>
-            {props.status}
+          <div
+            className={`bracket-card-status ${
+              props.status ? props.status.toLowerCase() : ""
+            }`}
+          >
+            {props.status || "Draft"}
           </div>
         </div>
         <div className="bracket-card-title">
@@ -39,13 +43,17 @@ const BracketCard = function(props) {
             <div className="bracket-card-times-entry">
               <div className="entry-label">Date</div>
               <div className="entry-data">
-                {`${props.start.local().month() +
-                  1}/${props.start.local().date()}`}
+                {props.start
+                  ? `${props.start.local().month() +
+                      1}/${props.start.local().date()}`
+                  : "MM/DD"}
               </div>
             </div>
             <div className="bracket-card-times-entry">
               <div className="entry-label">Time</div>
-              <div className="entry-data">{props.start.format("HH:mm")}</div>
+              <div className="entry-data">
+                {props.start ? props.start.format("HH:mm") : "HH:MM"}
+              </div>
             </div>
           </div>
         </div>
@@ -54,10 +62,45 @@ const BracketCard = function(props) {
         <div className="bracket-card-description">
           {props.description || "Description goes here"}
         </div>
-        <div className="bracket-card-controls">
-          <button className="btn card-btn">Details</button>
-          <button className="btn card-btn positive">Join</button>
-        </div>
+        {props.manage ? (
+          <div className="bracket-card-controls">
+            <button
+              className="btn card-btn"
+              onClick={e =>
+                props.mng && props.id ? props.mng(props.id) : null
+              }
+            >
+              Manage
+            </button>
+            <button
+              className="btn card-btn caution"
+              onClick={e =>
+                props.edit && props.id ? props.edit(props.id) : null
+              }
+            >
+              Edit
+            </button>
+          </div>
+        ) : (
+          <div className="bracket-card-controls">
+            <button
+              className="btn card-btn"
+              onClick={e =>
+                props.view && props.id ? props.view(props.id) : null
+              }
+            >
+              Details
+            </button>
+            <button
+              className="btn card-btn positive"
+              onClick={e =>
+                props.join && props.id ? props.join(props.id) : null
+              }
+            >
+              Join
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

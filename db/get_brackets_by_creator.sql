@@ -1,1 +1,1 @@
-SELECT * FROM brackets WHERE creator_id = $1;
+SELECT brackets.*, users.alias FROM brackets JOIN users ON brackets.creator_id=users.user_id WHERE creator_id = $1;

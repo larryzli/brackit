@@ -31,19 +31,25 @@ class Profile extends Component {
     };
   }
   componentDidMount() {
+    // GET CURRENT USER DATA
     this.getUserData();
   }
   componentDidUpdate(newProps) {
+    // IF NEW USER ID PROVIDED REFETCH USER DATA WITH NEW ID
     if (newProps.match.params.id !== this.props.match.params.id) {
       this.getUserData();
     }
   }
+
+  // FETCHES USER DATA
   getUserData() {
+    // SET LOADING STATE
     if (!this.state.loading) {
       this.setState({ loading: true });
     }
+    // GET USER DATA WITH ID PROVIDED IN URL
     axios.get(`/api/user/${this.props.match.params.id}`).then(response => {
-      console.log(response);
+      // SET USER DATA ON STATE
       this.setState({
         alias: response.data.alias || "",
         name: response.data.name || "",
@@ -53,6 +59,8 @@ class Profile extends Component {
       });
     });
   }
+
+  // REVERTS EDIT CHANGES AND FLAG
   revert() {
     this.setState({
       alias: this.props.user.alias || "",
@@ -62,14 +70,20 @@ class Profile extends Component {
       editing: false
     });
   }
+
+  // TOGGLES EDIT FLAG
   toggleEdit() {
     this.setState({
       editing: !this.state.editing
     });
   }
+
+  // HANDLES INPUT CHANGES
   handleChange(prop, val) {
     this.setState({ [prop]: val });
   }
+
+  // SAVES CHANGES TO USER DATA
   handleSave() {
     this.setState({ loading: true });
     this.props
@@ -92,8 +106,8 @@ class Profile extends Component {
         this.setState({ error: true });
       });
   }
+
   render() {
-    // console.log(this.props);
     return (
       <div className="content-wrapper">
         <Header

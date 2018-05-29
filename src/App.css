@@ -70,6 +70,8 @@ a, a:visited {
   .input-group textarea {
     resize: none;
     height: 113px; }
+  .input-group .error {
+    border: 2px solid #FC7B5A; }
 
 .responsive-input-2col {
   display: grid;

@@ -24,5 +24,20 @@ module.exports = {
         return res.status(200).json(response[0]);
       })
       .catch(console.log);
+  },
+  getCreatorBrackets: (req, res) => {
+    const { user_id } = req.user;
+    console.log(req.user);
+    if (user_id) {
+      req.app
+        .get("db")
+        .get_brackets_by_creator([user_id])
+        .then(response => {
+          res.status(200).json(response);
+        })
+        .catch(console.log);
+    } else {
+      res.status(403).json();
+    }
   }
 };

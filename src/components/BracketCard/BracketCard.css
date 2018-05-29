@@ -1,6 +1,6 @@
 .bracket-card-container {
   height: 292px;
-  width: 260px;
+  min-width: 260px;
   background: #FAFAFA;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -83,7 +83,7 @@
   color: white;
   font-size: 12px;
   font-weight: 100;
-  max-width: 230px;
+  min-width: 230px;
   max-height: 211px;
   min-height: 211px;
   overflow-wrap: break-word;
@@ -100,7 +100,8 @@
   color: #FAFAFA;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.2);
-  width: 50%; }
+  width: 100px;
+  flex-grow: 1; }
   .btn.card-btn:hover {
     border: 1px solid transparent;
     color: #212121;
@@ -112,6 +113,12 @@
     color: #FAFAFA;
     background: #4AE09C; }
 
+.btn.card-btn.caution {
+  color: yellow; }
+  .btn.card-btn.caution:hover {
+    color: #212121;
+    background: yellow; }
+
 .bracket-card-status {
   width: fit-content;
   display: flex;
@@ -121,7 +128,8 @@
   font-size: 12px;
   border-radius: 5px;
   background: #616161;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  color: yellow; }
   .bracket-card-status.draft {
     color: yellow; }
   .bracket-card-status.ready {

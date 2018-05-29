@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 // IMPORT COMPONENTS
@@ -23,7 +23,9 @@ class Create extends Component {
       start: moment(),
       subject: "",
       description: "",
-      headerImage: ""
+      headerImage: "",
+      saving: false,
+      error: false
       // private: false,
       // format: "Single Elimination"
     };
@@ -49,8 +51,10 @@ class Create extends Component {
     if (!this.props.user.user_id) {
       alert("Please create an account or log in to create a bracket.");
     } else if (!this.state.name || !this.state.subject || !this.state.start) {
+      this.setState({ error: true });
       alert("Please fill out all required(*) fields.");
     } else {
+      this.setState({ saving: true });
       axios
         .post("/api/bracket/create", {
           name: this.state.name,
@@ -61,13 +65,12 @@ class Create extends Component {
           creatorID: this.props.user.user_id
         })
         .then(response => {
-          console.log(response);
+          this.props.history.push(`/manage/${response.data.bracket_id}`);
         })
         .catch(console.log);
     }
   }
   render() {
-    console.log(this.state);
     return (
       <div className="content-wrapper">
         <Header
@@ -108,6 +111,9 @@ class Create extends Component {
               <div className="input-group">
                 <p>Name *</p>
                 <input
+                  className={
+                    this.state.error && !this.state.name ? "error" : ""
+                  }
                   autoFocus
                   placeholder="What do you want to call your bracket?"
                   value={this.state.name}
@@ -118,6 +124,9 @@ class Create extends Component {
               <div className="input-group">
                 <p>Subject *</p>
                 <input
+                  className={
+                    this.state.error && !this.state.subject ? "error" : ""
+                  }
                   placeholder="What are you competing in?"
                   value={this.state.subject}
                   type="text"

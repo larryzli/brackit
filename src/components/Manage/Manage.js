@@ -1,14 +1,66 @@
 // IMPORT DEPENDENCIES
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { connect } from "react-redux";
+import moment from "moment";
 // IMPORT COMPONENTS
 import Header from "../Header/Header";
+import BracketCard from "../BracketCard/BracketCard";
+// IMPORT ASSETS
+import loadingIcon from "../../assets/loading/loading-spin.svg";
 // IMPORT STYLING
 import "./Manage.css";
 
 // CLASS COMPONENT
 class Manage extends Component {
+  constructor(props) {
+    super(props);
+
+    // COMPONENT STATE
+    this.state = {
+      brackets: [],
+      errorMsg: "No Brackets Here",
+      loading: true
+    };
+  }
+
+  componentDidMount() {
+    // GET LOGGED IN USER'S BRACKETS
+    axios
+      .get(`/api/bracket/creator/`)
+      .then(response => {
+        console.log(response.data);
+        this.setState({ brackets: response.data, loading: false });
+      })
+      .catch(error => {
+        // IF NO LOGGED IN USER THEN CHANGE ERROR TO LOGIN ERROR
+        this.setState({ errorMsg: "Please log in", loading: false });
+      });
+  }
+
   render() {
+    // MAP THROUGH BRACKETS AND SHOW CARDS
+    const brackets = this.state.brackets.length ? (
+      this.state.brackets.map((bracket, index) => {
+        return (
+          <BracketCard
+            key={index}
+            name={bracket.bracket_name}
+            start={moment(bracket.start)}
+            subject={bracket.subject}
+            description={bracket.description}
+            image={bracket.image_url}
+            author={bracket.alias}
+            status="Draft"
+            manage={true}
+          />
+        );
+      })
+    ) : (
+      // IF NO BRACKETS THEN SHOW ERROR
+      <div>{this.state.errorMsg}</div>
+    );
     return (
       <div className="content-wrapper">
         <Header breadcrumbs={[{ link: "/manage", title: "Manage" }]} />
@@ -37,11 +89,25 @@ class Manage extends Component {
               </Link>
             </div>
           </div>
+          {this.state.loading ? (
+            <div className="loading-container">
+              <img src={loadingIcon} alt="Loading..." />
+            </div>
+          ) : (
+            <div className="brackets-grid">{brackets}</div>
+          )}
         </div>
       </div>
     );
   }
 }
 
+// SUBSCRIBE TO REDUX
+const mapStateToProps = state => {
+  return {
+    ...state.user
+  };
+};
+
 // EXPORT COMPONENT
-export default Manage;
+export default connect(mapStateToProps)(Manage);
