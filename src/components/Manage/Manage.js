@@ -23,6 +23,14 @@ class Manage extends Component {
       errorMsg: "No Brackets Here",
       loading: true
     };
+
+    // BIND METHODS
+    this.manageRoute = this.manageRoute.bind(this);
+  }
+
+  // ROUTE USER TO BRACKET MANAGE PAGE
+  manageRoute(bracketID) {
+    this.props.history.push(`/manage/${bracketID}`);
   }
 
   componentDidMount() {
@@ -30,7 +38,6 @@ class Manage extends Component {
     axios
       .get(`/api/bracket/creator/`)
       .then(response => {
-        console.log(response.data);
         this.setState({ brackets: response.data, loading: false });
       })
       .catch(error => {
@@ -46,6 +53,7 @@ class Manage extends Component {
         return (
           <BracketCard
             key={index}
+            id={bracket.bracket_id}
             name={bracket.bracket_name}
             start={moment(bracket.start)}
             subject={bracket.subject}
@@ -54,12 +62,13 @@ class Manage extends Component {
             author={bracket.alias}
             status="Draft"
             manage={true}
+            mng={this.manageRoute}
           />
         );
       })
     ) : (
       // IF NO BRACKETS THEN SHOW ERROR
-      <div>{this.state.errorMsg}</div>
+      <div className="error-text">{this.state.errorMsg}</div>
     );
     return (
       <div className="content-wrapper">
@@ -68,25 +77,27 @@ class Manage extends Component {
           <div className="title-wrapper">
             <h2>Manage Brackets</h2>
             <div className="title-actions">
-              <Link to="/manage/create">
-                <button className="icon-btn positive">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <title>Create Bracket</title>
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
-              </Link>
+              {this.props.user.user_id && (
+                <Link to="/manage/create">
+                  <button className="icon-btn positive">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <title>Create Bracket</title>
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
           {this.state.loading ? (

@@ -248,7 +248,7 @@ class Create extends Component {
               className="btn positive small"
               onClick={() => this.createBracket()}
             >
-              Save
+              Create
             </button>
           </div>
         </div>

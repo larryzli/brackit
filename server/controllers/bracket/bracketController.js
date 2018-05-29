@@ -27,7 +27,6 @@ module.exports = {
   },
   getCreatorBrackets: (req, res) => {
     const { user_id } = req.user;
-    console.log(req.user);
     if (user_id) {
       req.app
         .get("db")
