@@ -22,24 +22,41 @@ html
 
 .content-wrapper
   flex-grow: 1
+  width: calc(100% - 250px)
   
 a, a:visited
   color: $black
 
 .content
   padding: 15px 25px
+  width: 100%
 
 //    PAGE TITLE     //
 .title-wrapper
   display: flex
   justify-content: space-between
-  align-items: center
   margin-bottom: 15px
-  height: 37px
+  min-height: 37px
+  max-width: 100%
+
+  span:not(.bracket-card-status)
+    margin-right: 10px
+
+  .bracket-card-status
+    // margin-top: 2px
+    margin-bottom: 4px
+    margin-top: 3px
+    box-shadow: 0 0 0 transparent
+    word-break: normal
 
   h2
     font-weight: 600
     letter-spacing: $spacing
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    word-break: break-word
+    padding: 3px 0
 
   &:not(:first-of-type)
     margin-top: 25px
@@ -47,6 +64,7 @@ a, a:visited
 //     INPUTS      //
 .input-group
   margin-bottom: 12px
+  width: 100%
   
   p:first-child
     text-transform: uppercase
@@ -61,6 +79,15 @@ a, a:visited
     margin-left: 1px
     padding-top: 3px
     padding-bottom: 10px
+
+  .formatted-text:not(:first-child)
+    white-space: pre-wrap
+    word-break: normal
+    font-size: 14px
+    max-width: 100%
+    overflow-wrap: break-word
+    // overflow: hidden
+    // word-wrap: break-word
 
   input, textarea
     padding: 8px
@@ -101,6 +128,7 @@ a, a:visited
   
 .title-actions
   display: flex
+  height: 37px
 
 .btn
   padding: 10px 20px

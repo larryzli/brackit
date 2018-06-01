@@ -19,28 +19,43 @@ html {
   display: flex; }
 
 .content-wrapper {
-  flex-grow: 1; }
+  flex-grow: 1;
+  width: calc(100% - 250px); }
 
 a, a:visited {
   color: #212121; }
 
 .content {
-  padding: 15px 25px; }
+  padding: 15px 25px;
+  width: 100%; }
 
 .title-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 15px;
-  height: 37px; }
+  min-height: 37px;
+  max-width: 100%; }
+  .title-wrapper span:not(.bracket-card-status) {
+    margin-right: 10px; }
+  .title-wrapper .bracket-card-status {
+    margin-bottom: 4px;
+    margin-top: 3px;
+    box-shadow: 0 0 0 transparent;
+    word-break: normal; }
   .title-wrapper h2 {
     font-weight: 600;
-    letter-spacing: 1.2px; }
+    letter-spacing: 1.2px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    word-break: break-word;
+    padding: 3px 0; }
   .title-wrapper:not(:first-of-type) {
     margin-top: 25px; }
 
 .input-group {
-  margin-bottom: 12px; }
+  margin-bottom: 12px;
+  width: 100%; }
   .input-group p:first-child {
     text-transform: uppercase;
     font-size: 12px;
@@ -53,6 +68,12 @@ a, a:visited {
     margin-left: 1px;
     padding-top: 3px;
     padding-bottom: 10px; }
+  .input-group .formatted-text:not(:first-child) {
+    white-space: pre-wrap;
+    word-break: normal;
+    font-size: 14px;
+    max-width: 100%;
+    overflow-wrap: break-word; }
   .input-group input, .input-group textarea {
     padding: 8px;
     font-size: 14px;
@@ -86,7 +107,8 @@ a, a:visited {
   margin-top: 25px; }
 
 .title-actions {
-  display: flex; }
+  display: flex;
+  height: 37px; }
 
 .btn {
   padding: 10px 20px;

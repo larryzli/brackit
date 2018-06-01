@@ -257,9 +257,7 @@ class Profile extends Component {
                     onChange={e => this.handleChange("bio", e.target.value)}
                   />
                 ) : (
-                  <p style={{ whiteSpace: "pre", fontSize: "14px" }}>
-                    {this.state.bio}
-                  </p>
+                  <p className="formatted-text">{this.state.bio}</p>
                 )}
               </div>
               {/* </div> */}

@@ -139,4 +139,10 @@
   .bracket-card-status.done {
     color: #BDBDBD; }
 
+.bracket-tz {
+  display: block;
+  font-size: 12px;
+  color: #BDBDBD;
+  margin-top: 3px; }
+
 /*# sourceMappingURL=BracketCard.css.map */

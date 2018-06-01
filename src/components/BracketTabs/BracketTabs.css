@@ -1,0 +1,47 @@
+.bracket-tabs-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+
+.bracket-tabs-control {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+  .bracket-tabs-control .bracket-tab {
+    width: 65px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    margin-bottom: -1px;
+    transition: all 0.2s; }
+    .bracket-tabs-control .bracket-tab:hover {
+      border-bottom: 3px solid rgba(0, 0, 0, 0.1); }
+    .bracket-tabs-control .bracket-tab.selected {
+      border-bottom: 3px solid #35AAB5;
+      color: #212121; }
+    .bracket-tabs-control .bracket-tab.disabled {
+      opacity: 0.5; }
+      .bracket-tabs-control .bracket-tab.disabled:hover {
+        border-bottom: 3px solid transparent;
+        cursor: not-allowed; }
+
+.bracket-tabs-content-container {
+  padding-top: 15px;
+  width: 100%; }
+  .bracket-tabs-content-container img {
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    max-height: 400px;
+    object-fit: cover; }
+    .bracket-tabs-content-container img.broken {
+      display: none; }
+
+/*# sourceMappingURL=BracketTabs.css.map */

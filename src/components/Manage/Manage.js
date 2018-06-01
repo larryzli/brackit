@@ -42,7 +42,7 @@ class Manage extends Component {
       })
       .catch(error => {
         // IF NO LOGGED IN USER THEN CHANGE ERROR TO LOGIN ERROR
-        this.setState({ errorMsg: "Please log in", loading: false });
+        this.setState({ errorMsg: error.response.data, loading: false });
       });
   }
 

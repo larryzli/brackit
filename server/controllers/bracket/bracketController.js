@@ -26,8 +26,8 @@ module.exports = {
       .catch(console.log);
   },
   getCreatorBrackets: (req, res) => {
-    const { user_id } = req.user;
-    if (user_id) {
+    if (req.user) {
+      const { user_id } = req.user;
       req.app
         .get("db")
         .get_brackets_by_creator([user_id])
@@ -36,7 +36,36 @@ module.exports = {
         })
         .catch(console.log);
     } else {
-      res.status(403).json();
+      res.status(401).send("Please login or sign up.");
+    }
+  },
+  getBracket: (req, res) => {
+    if (req.user) {
+      const { id: bracket_id } = req.params;
+      const { user_id } = req.user;
+      if (bracket_id) {
+        req.app
+          .get("db")
+          .get_bracket_by_id([bracket_id])
+          .then(response => {
+            if (response.length) {
+              console.log(response[0], +user_id);
+              if (response[0].creator_id === +user_id) {
+                return res.status(200).json(response[0]);
+              } else {
+                return res
+                  .status(403)
+                  .send(`User is not authorized to manage bracket.`);
+              }
+            } else {
+              return res.status(409).send(`No bracket with id: ${bracket_id}.`);
+            }
+          });
+      } else {
+        return res.status(409).send(`Invalid bracket id: ${bracket_id}.`);
+      }
+    } else {
+      return res.status(401).send("Please log in or sign up.");
     }
   }
 };
