@@ -10,6 +10,31 @@ import "./Header.css";
 // CLASS COMPONENT
 class Header extends Component {
   render() {
+    const links =
+      this.props.breadcrumbs && this.props.breadcrumbs.length
+        ? this.props.breadcrumbs.map((element, index) => {
+            return (
+              <div key={index} className="link-wrapper">
+                <Link to={element.link}>{element.title}</Link>
+                {index !== this.props.breadcrumbs.length - 1 ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                ) : null}
+              </div>
+            );
+          })
+        : "No Title";
     return (
       <div id="header-container">
         <svg
@@ -31,7 +56,7 @@ class Header extends Component {
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
         <div className="header-title">
-          <div className="breadcrumb">
+          {/* <div className="breadcrumb">
             {this.props.breadcrumbs && this.props.breadcrumbs.length ? (
               <Link
                 to={
@@ -46,8 +71,8 @@ class Header extends Component {
             ) : (
               "No Title"
             )}
-          </div>
-          <div className="breadcrumbs" />
+          </div> */}
+          <div className="breadcrumbs">{links}</div>
         </div>
       </div>
     );

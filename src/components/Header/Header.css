@@ -16,6 +16,16 @@
 .header-title {
   font-size: 16px; }
 
+.breadcrumbs {
+  padding-left: 10px;
+  display: flex; }
+  .breadcrumbs .link-wrapper {
+    display: flex; }
+    .breadcrumbs .link-wrapper:last-of-type a {
+      color: #35AAB5; }
+    .breadcrumbs .link-wrapper svg {
+      margin: 0 10px; }
+
 @media (min-width: 400px) {
   #header-container {
     padding: 15px 40px; } }
