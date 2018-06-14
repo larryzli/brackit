@@ -1,6 +1,7 @@
 .bracket-card-container {
   height: 292px;
   min-width: 260px;
+  max-width: 545px;
   background: #FAFAFA;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;

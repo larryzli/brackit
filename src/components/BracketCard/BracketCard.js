@@ -60,7 +60,7 @@ const BracketCard = function(props) {
       </div>
       <div className="bracket-card-overlay">
         <div className="bracket-card-description">
-          {props.description || "Description goes here"}
+          {props.description || "No Description"}
         </div>
         {props.manage ? (
           <div className="bracket-card-controls">

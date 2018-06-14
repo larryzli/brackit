@@ -1,6 +1,5 @@
 // IMPORT DEPENDENCIES
 import React, { Component } from "react";
-import DayPickerInput from "react-day-picker/DayPickerInput";
 import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 import moment from "moment";
@@ -8,6 +7,7 @@ import axios from "axios";
 // IMPORT COMPONENTS
 import Header from "../Header/Header";
 import BracketCard from "../BracketCard/BracketCard";
+import BracketFields from "../BracketFields/BracketFields";
 // IMPORT STYLING
 import "react-day-picker/lib/style.css";
 import "./Create.css";
@@ -29,6 +29,9 @@ class Create extends Component {
       // private: false,
       // format: "Single Elimination"
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.setTime = this.setTime.bind(this);
   }
   handleChange(prop, val) {
     this.setState({ [prop]: val });
@@ -106,131 +109,22 @@ class Create extends Component {
               </button>
             </div>
           </div>
-          <div className="create-inputs">
-            <div className="responsive-input-2col">
-              <div className="input-group">
-                <p>Name *</p>
-                <input
-                  className={
-                    this.state.error && !this.state.name ? "error" : ""
-                  }
-                  autoFocus
-                  placeholder="What do you want to call your bracket?"
-                  value={this.state.name}
-                  type="text"
-                  onChange={e => this.handleChange("name", e.target.value)}
-                />
-              </div>
-              <div className="input-group">
-                <p>Subject *</p>
-                <input
-                  className={
-                    this.state.error && !this.state.subject ? "error" : ""
-                  }
-                  placeholder="What are you competing in?"
-                  value={this.state.subject}
-                  type="text"
-                  onChange={e => this.handleChange("subject", e.target.value)}
-                  list="subjects"
-                />
-                <datalist
-                  id="subjects"
-                  style={{ height: "100px", overflowY: "scroll" }}
-                >
-                  <option>Baseball</option>
-                  <option>Basketball</option>
-                  <option>Beer Pong</option>
-                  <option>Call of Duty</option>
-                  <option>CounterStrike:GO</option>
-                  <option>Fantasy Sports</option>
-                  <option>Football</option>
-                  <option>Hearthstone</option>
-                  <option>Heroes of the Storm</option>
-                  <option>Hockey</option>
-                  <option>League of Legends</option>
-                  <option>Overwatch</option>
-                  <option>Ping Pong</option>
-                  <option>Soccer</option>
-                </datalist>
-              </div>
-            </div>
-            <div className="responsive-input-2col">
-              <div className="input-group">
-                <p>Start Date *</p>
-                <style>{`
-              .DayPickerInput{
-                width: 100%;
-              }
-              .DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):not(.DayPicker-Day--selected):hover {
-                background: rgba(0, 0, 0, 0.1);
-                border-radius: 0;
-              }
-
-              .DayPicker-Day--today {
-                color: #35AAB5;
-              }
-
-              .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-                color: #FAFAFA;
-                background: #35AAB5;
-                border-radius: 0;
-              }
-
-              .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
-                
-                background: #35AAB5;
-                
-              }
-              `}</style>
-                <DayPickerInput
-                  value={new Date(this.state.start)}
-                  onDayChange={day => this.handleChange("start", moment(day))}
-                  dayPickerProps={{
-                    disabledDays: [
-                      {
-                        before: new Date()
-                      }
-                    ]
-                  }}
-                  inputProps={{
-                    readOnly: "readOnly"
-                  }}
-                />
-              </div>
-              <div className="input-group">
-                <p>Start Time *</p>
-                <input
-                  placeholder="HH:MM"
-                  value={this.state.start.local().format("HH:mm")}
-                  type="time"
-                  onChange={e => this.setTime(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="input-group">
-              <p>Description</p>
-              <textarea
-                placeholder="How would you describe your bracket?"
-                value={this.state.description}
-                type="text"
-                onChange={e => this.handleChange("description", e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <p>Header Image URL</p>
-              <input
-                placeholder="What image do you want for your bracket?"
-                value={this.state.headerImage}
-                type="text"
-                onChange={e => this.handleChange("headerImage", e.target.value)}
-              />
-            </div>
-          </div>
+          <BracketFields
+            name={this.state.name}
+            error={this.state.error}
+            handleChange={this.handleChange}
+            subject={this.state.subject}
+            start={this.state.start}
+            setTime={this.setTime}
+            description={this.state.description}
+            headerImage={this.state.headerImage}
+          />
           <div className="title-wrapper">
             <h2>Card Preview</h2>
           </div>
           <div className="card-preview">
             <BracketCard
+              style={{ maxWidth: "450px" }}
               name={this.state.name}
               start={this.state.start}
               subject={this.state.subject}
