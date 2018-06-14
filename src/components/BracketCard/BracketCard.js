@@ -13,9 +13,7 @@ const BracketCard = function(props) {
         <div
           className="bracket-card-image"
           style={{
-            backgroundImage: props.image
-              ? `url("${props.image}")`
-              : `url(${defaultPic})`
+            backgroundImage: `url("${props.image}"), url(${defaultPic})`
           }}
         >
           <div

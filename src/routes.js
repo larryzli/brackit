@@ -6,6 +6,7 @@ import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Discover from "./components/Discover/Discover";
 import Create from "./components/Create/Create";
+import Edit from "./components/Edit/Edit";
 import ManageBracket from "./components/ManageBracket/ManageBracket";
 import Manage from "./components/Manage/Manage";
 import About from "./components/About/About";
@@ -20,6 +21,7 @@ export default (
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/discover" component={Discover} />
     <Route path="/manage/create" component={Create} />
+    <Route path="/manage/:id/edit" component={Edit} />
     <Route path="/manage/:id" component={ManageBracket} />
     <Route path="/manage" component={Manage} />
     <Route path="/about" component={About} />

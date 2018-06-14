@@ -17,14 +17,20 @@
   font-size: 16px; }
 
 .breadcrumbs {
-  padding-left: 10px;
   display: flex; }
+  .breadcrumbs:not(:first-of-type) {
+    padding-left: 10px; }
   .breadcrumbs .link-wrapper {
-    display: flex; }
+    display: flex;
+    color: #35AAB5; }
     .breadcrumbs .link-wrapper:last-of-type a {
-      color: #35AAB5; }
+      font-weight: 500; }
+      .breadcrumbs .link-wrapper:last-of-type a:hover {
+        color: #212121; }
     .breadcrumbs .link-wrapper svg {
       margin: 0 10px; }
+    .breadcrumbs .link-wrapper a:hover {
+      color: #35AAB5; }
 
 @media (min-width: 400px) {
   #header-container {

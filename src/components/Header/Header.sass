@@ -20,18 +20,28 @@
   font-size: 16px
 
 .breadcrumbs 
-  padding-left: 10px
   display: flex
+
+  &:not(:first-of-type)
+    padding-left: 10px
 
   .link-wrapper
     display: flex
+    color: $teal
 
     &:last-of-type
       a
-        color: $teal
+        font-weight: 500
+
+        &:hover
+          color: $black
 
     svg
       margin: 0 10px
+    
+    a
+      &:hover
+        color: $teal
 
 @media (min-width: 400px)
   #header-container

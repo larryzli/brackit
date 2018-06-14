@@ -39,7 +39,7 @@ module.exports = {
       res.status(401).send("Please login or sign up.");
     }
   },
-  getBracket: (req, res) => {
+  getProtectedBracket: (req, res) => {
     if (req.user) {
       const { id: bracket_id } = req.params;
       const { user_id } = req.user;
@@ -67,5 +67,24 @@ module.exports = {
     } else {
       return res.status(401).send("Please log in or sign up.");
     }
+  },
+  updateBracket: (req, res) => {
+    const { id: bracket_id } = req.params;
+    const { name, start, subject, description, headerImage } = req.body;
+
+    req.app
+      .get("db")
+      .update_bracket_by_bracket_id([
+        bracket_id,
+        name,
+        start,
+        subject,
+        description,
+        headerImage
+      ])
+      .then(response => {
+        return res.status(200).json(response[0]);
+      })
+      .catch(console.log);
   }
 };

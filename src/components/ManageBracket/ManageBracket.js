@@ -24,7 +24,7 @@ class ManageBracket extends Component {
 
   componentDidMount() {
     axios
-      .get(`/api/bracket/${this.props.match.params.id}`)
+      .get(`/api/bracket/manage/${this.props.match.params.id}`)
       .then(response => {
         console.log("bracketData: ", response.data);
         this.setState({ bracketInfo: response.data, loading: false });
@@ -80,7 +80,11 @@ class ManageBracket extends Component {
                 </button>
                 <button
                   className="icon-btn"
-                  // onClick={() => this.toggleEdit()}
+                  onClick={() =>
+                    this.props.history.push(
+                      `/manage/${this.state.bracketInfo.bracket_id}/edit`
+                    )
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

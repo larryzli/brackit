@@ -44,6 +44,7 @@ const BracketFields = props => {
             <option>League of Legends</option>
             <option>Overwatch</option>
             <option>Ping Pong</option>
+            <option>Rocket League</option>
             <option>Soccer</option>
           </datalist>
         </div>

@@ -84,7 +84,7 @@ class Create extends Component {
         />
         <div className="content">
           <div className="title-wrapper">
-            <h2>Bracket Details</h2>
+            <h2>Create Bracket</h2>
             <div className="title-actions">
               <button
                 className="icon-btn positive"

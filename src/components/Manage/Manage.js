@@ -26,11 +26,16 @@ class Manage extends Component {
 
     // BIND METHODS
     this.manageRoute = this.manageRoute.bind(this);
+    this.editRoute = this.editRoute.bind(this);
   }
 
   // ROUTE USER TO BRACKET MANAGE PAGE
   manageRoute(bracketID) {
     this.props.history.push(`/manage/${bracketID}`);
+  }
+  // ROUTE USER TO BRACKET EDITING PAGE
+  editRoute(bracketID) {
+    this.props.history.push(`/manage/${bracketID}/edit`);
   }
 
   componentDidMount() {
@@ -63,6 +68,7 @@ class Manage extends Component {
             status="Draft"
             manage={true}
             mng={this.manageRoute}
+            edit={this.editRoute}
           />
         );
       })
